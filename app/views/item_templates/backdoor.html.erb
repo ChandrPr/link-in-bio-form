@@ -1,0 +1,37 @@
+<h1>Add a new item</h1>
+
+<form action="/insert_item" method="post">
+  <div>
+    <label for="link_url_box">Link URL</label>
+    <input id="link_url_box" name="query_link_url" placeholder="Enter a URL..." type="text">
+  </div>
+
+  <div>
+    <label for="link_description_box">Link Description</label>
+    <input id="link_description_box" name="query_link_description" placeholder="Enter a link description..." type="text">
+  </div>
+
+  <div>
+    <label for="thumbnail_url_box">Thumbnail URL</label>
+    <input id="thumbnail_url_box" name="query_thumbnail_url" placeholder="Enter a thumbnail URL..." type="text">
+  </div>
+
+  <button>Create item</button>
+</form>
+
+<br>
+
+<div class="links-row">
+  <% @list_of_items.each do |the_item| %>
+    <div class="item">
+      <img src="<%= the_item.thumbnail_url %>" class="thumbnail">
+      <a class="link-text" target="_blank" href="<%= the_item.link_url %>">
+        <%= the_item.link_description %>
+      </a>
+      <form action="/delete_item" method="delete">
+      <button>Delete</button>
+      <a href="/delete_item/<%= the_item.id %>">Delete</a>
+      </form>
+    </div>
+  <% end %>
+</div>
